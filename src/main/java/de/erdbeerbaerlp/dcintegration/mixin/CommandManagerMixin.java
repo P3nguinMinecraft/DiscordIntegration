@@ -22,7 +22,6 @@ import net.minecraft.server.permissions.Permission;
 import net.minecraft.server.permissions.PermissionLevel;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
-import org.apache.commons.lang3.ArrayUtils;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -42,14 +41,6 @@ public class CommandManagerMixin {
         String name = source.getTextName();
         command = command.replaceFirst(Pattern.quote("/"), "");
         if (DiscordIntegration.INSTANCE != null) {
-            if (!Configuration.instance().commandLog.channelID.equals("0")) {
-                if ((!Configuration.instance().commandLog.commandWhitelist && !ArrayUtils.contains(Configuration.instance().commandLog.ignoredCommands, command.split(" ")[0])) ||
-                        (Configuration.instance().commandLog.commandWhitelist && ArrayUtils.contains(Configuration.instance().commandLog.ignoredCommands, command.split(" ")[0])))
-                    DiscordIntegration.INSTANCE.sendMessage(Configuration.instance().commandLog.message
-                            .replace("%sender%", name)
-                            .replace("%cmd%", command)
-                            .replace("%cmd-no-args%", command.split(" ")[0]), DiscordIntegration.INSTANCE.getChannel(Configuration.instance().commandLog.channelID));
-            }
             boolean raw = false;
             if (((command.startsWith("say")) && Configuration.instance().messages.sendOnSayCommand) || (command.startsWith("me") && Configuration.instance().messages.sendOnMeCommand)) {
                 String msg = command.replace("say ", "");

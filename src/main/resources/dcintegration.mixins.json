@@ -9,6 +9,7 @@
     "ServerPlayerMixin",
     "PlayerManagerMixin",
     "ChatMixin",
+    "CommandsMixin",
     "CommandManagerMixin",
     "MixinMinecraftServer"
   ],

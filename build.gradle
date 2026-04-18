@@ -14,6 +14,7 @@ base {
 }
 
 repositories {
+    mavenLocal()
     mavenCentral()
     maven { url 'https://repo.erdbeerbaerlp.de/repository/maven-public/' }
     maven {
@@ -42,6 +43,7 @@ dependencies {
     include implementation("me.lucko:fabric-permissions-api:${project.fabric_permissions_api}")
     include implementation("maven.modrinth:placeholder-api:${project.placeholder_api}")
     include implementation("maven.modrinth:styled-chat:${project.styled_chat}")
+    include implementation("maven.modrinth:vanish:${project.vanish}")
 }
 
 processResources {
